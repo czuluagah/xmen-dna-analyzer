@@ -5,20 +5,15 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
-import javax.validation.Valid;
-
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.xmen.dnasentinel.model.DNASequence;
-import com.xmen.dnasentinel.resources.MuntantResource;
+import com.xmen.dnasentinel.model.DNAAnalysisStats;
+import com.xmen.dnasentinel.resources.MutantStatsResource;
 import com.xmen.dnasentinel.services.DNASentinelService;
-
-import static com.xmen.dnasentinel.utils.Constants.MUTANT_RESOURCE;
+import static com.xmen.dnasentinel.utils.Constants.STATS_RESOURCE;
 
 @Api(
         value = "DNA Mutant Analyzer",
@@ -29,12 +24,12 @@ import static com.xmen.dnasentinel.utils.Constants.MUTANT_RESOURCE;
 )
 
 @RestController
-public class MutantResourceImpl implements MuntantResource {
+public class MutantStatsResourceImpl implements MutantStatsResource {
 
-    private final DNASentinelService sentinelService;
+    private final DNASentinelService service;
 
-    public MutantResourceImpl(DNASentinelService sentinelService) {
-        this.sentinelService = sentinelService;
+    public MutantStatsResourceImpl(DNASentinelService service) {
+        this.service = service;
     }
 
     @ApiOperation(
@@ -50,10 +45,9 @@ public class MutantResourceImpl implements MuntantResource {
     })
 
     @Override
-    @PostMapping(MUTANT_RESOURCE)
-    public ResponseEntity isMutant(@RequestBody @Valid DNASequence dnaSequence) {
-        boolean isMutant = sentinelService.isMutant(dnaSequence);
-        return isMutant ? ResponseEntity.ok().build() :
-                ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+    @GetMapping(STATS_RESOURCE)
+    public ResponseEntity<DNAAnalysisStats> stats() {
+        DNAAnalysisStats stats = service.getStats();
+        return ResponseEntity.ok(stats);
     }
 }

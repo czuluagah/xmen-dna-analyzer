@@ -9,7 +9,7 @@ import java.util.List;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collation = "dna_analysis")
+@Document(collection = "dna_analysis")
 @Data
 @Builder
 public class DnaDcoument {
@@ -18,5 +18,5 @@ public class DnaDcoument {
     private String id;
     private List<String> dnaSecuence;
     private BigDecimal numberOfMatches;
-    private boolean isMutant;
+    private String type;
 }

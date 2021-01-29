@@ -1,13 +1,18 @@
 version: "3.8"
 services:
-mongodb:
-image : mongo
-container_name: mongodb
-environment:
-  - PUID=1000
-  - PGID=1000
-volumes:
-  - /home/barry/mongodb/database:/data/db
-ports:
-  - 27017:27017
-restart: unless-stopped
+  mongo:
+    container_name: mongo
+    image: mongo:4.2.8
+    restart: always
+    hostname: mongo
+    environment:
+      TZ: UTC # UTC, Europe/Amsterdam, America/Lima
+      MONGO_INITDB_DATABASE: dna
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password
+    ports:
+      - 27017:27017
+    volumes:
+      - ./files/mongo:/docker-entrypoint-initdb.d:ro
+    command: mongod --bind_ip_all --replSet rs0
+

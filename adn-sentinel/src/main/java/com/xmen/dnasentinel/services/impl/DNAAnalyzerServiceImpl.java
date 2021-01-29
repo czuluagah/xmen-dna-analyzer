@@ -3,14 +3,12 @@ package com.xmen.dnasentinel.services.impl;
 import lombok.extern.slf4j.Slf4j;
 
 import java.math.BigDecimal;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.ForkJoinPool;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import com.xmen.dnasentinel.exceptions.ContaminatedDnaSampleException;
 import com.xmen.dnasentinel.model.AnalysisResult;
@@ -21,18 +19,22 @@ import com.xmen.dnasentinel.services.types.DNAAnalysisType;
 
 import static com.xmen.dnasentinel.utils.DNAAnalyzerValidator.IS_MUTANT_DNA;
 
-@Service
+@Component
 @Slf4j
 public class DNAAnalyzerServiceImpl implements DNAAnalyzerService {
 
-    @Autowired private DNASequenceAnalyzer dnaSequenceAnalyzer;
+    private final DNASequenceAnalyzer dnaSequenceAnalyzer;
+
+    public DNAAnalyzerServiceImpl(DNASequenceAnalyzer dnaSequenceAnalyzer) {
+        this.dnaSequenceAnalyzer = dnaSequenceAnalyzer;
+    }
 
     @Override
     public AnalysisResult isMutant(DNASequence dnaSequence) {
         ForkJoinPool forkJoinPool = new ForkJoinPool();
         try {
             List<BigDecimal> findings = forkJoinPool.submit(() ->
-                    Arrays.asList(DNAAnalysisType.values()).parallelStream()
+                    DNAAnalysisType.getAnalysisMethods().parallelStream()
                     .map(dnaAnalysisType -> dnaSequenceAnalyzer.executeAnalysis(dnaAnalysisType, dnaSequence))
                     .collect(Collectors.toList())
             ).get();

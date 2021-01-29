@@ -11,6 +11,7 @@ import com.xmen.dnasentinel.command.DNAAnalizerCommand;
 import com.xmen.dnasentinel.model.DNASequence;
 import com.xmen.dnasentinel.services.types.DNAAnalysisType;
 import com.xmen.dnasentinel.utils.DNAAnalyzerValidator;
+import static java.lang.String.valueOf;
 
 @Component("diagonalDNAAnalyzer")
 @Slf4j
@@ -19,22 +20,19 @@ public class DiagonalDNAAnalyzer implements DNAAnalizerCommand<DNASequence, BigD
     @Override
     public BigDecimal analyze(DNASequence dnaSequence) {
         log.info("=============== Running DiagonalDNAAnalyzer ================");
-        BigDecimal matches = BigDecimal.ZERO;
-        DNAAnalysisType.getDiagonalMethod().forEach(dnaAnalysisType -> {
-            matches.add(this.processDiagonalAnalysis(dnaSequence, dnaAnalysisType));
-        });
-        return matches;
+        BigDecimal numberOfMatches = BigDecimal.ZERO;
+        for(DNAAnalysisType dnaAnalysisType : DNAAnalysisType.getDiagonalMethod()) {
+            numberOfMatches = numberOfMatches.add(this.processDiagonalAnalysis(dnaSequence, dnaAnalysisType));
+        }
+        return numberOfMatches;
     }
 
     public BigDecimal processDiagonalAnalysis(DNASequence dnaSequence, DNAAnalysisType type){
-        BigDecimal sequenceDetected = Optional.ofNullable(
+        return Optional.ofNullable(
                 dnaSequence.getSequences().stream().reduce("", (diagonal, sequence) ->
-                    type.compareTo(DNAAnalysisType.DIAGONAL_STRAIT_ANALYSIS)  == 0?
-                            diagonal.concat(String.valueOf(sequence.charAt(diagonal.length()))):
-                            diagonal.concat(String.valueOf( sequence.charAt(sequence.length() - (diagonal.length() + 1))))
-                )
-        ).filter(DNAAnalyzerValidator::isMutantDNA).map(s -> BigDecimal.ONE).orElseGet(()-> BigDecimal.ZERO);
-
-        return sequenceDetected;
+                    type.compareTo(DNAAnalysisType.DIAGONAL_STRAIT_ANALYSIS) == 0 ?
+                            diagonal.concat(valueOf(sequence.charAt(diagonal.length()))):
+                            diagonal.concat(valueOf(sequence.charAt(sequence.length() - (diagonal.length() + 1))))
+                )).filter(DNAAnalyzerValidator::isMutantDNA).map(s -> BigDecimal.ONE).orElseGet(()-> BigDecimal.ZERO);
     }
 }

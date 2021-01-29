@@ -1,5 +1,6 @@
 package com.xmen.dnasentinel.model;
 
+import lombok.Builder;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -7,12 +8,17 @@ import java.math.BigDecimal;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Data
+@Builder
 public class DNAAnalysisStats {
+
+    @JsonProperty("numberOfAnalysis")
+    private Integer numberOfAnalusis;
+
     @JsonProperty("count_mutant_dna")
-    private BigDecimal mutants;
+    private Integer mutants;
 
     @JsonProperty("count_human_dna")
-    private BigDecimal humans;
+    private Integer humans;
 
-    private BigDecimal ratio;
+    private double ratio;
 }

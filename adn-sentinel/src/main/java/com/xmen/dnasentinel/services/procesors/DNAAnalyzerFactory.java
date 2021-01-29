@@ -32,9 +32,7 @@ public class DNAAnalyzerFactory {
                 return verticalDNAAnalyzerObjectFactory.getObject();
             case HORIZONTAL_ANALYSIS:
                 return horizontalDNAAnalyzerObjectFactory.getObject();
-            case DIAGONAL_STRAIT_ANALYSIS:
-                return diagonalDNAAnalyzerObjectFactory.getObject();
-            case DIAGONAL_INVERSE_ANALYSIS:
+            case DIAGONAL_ANALYSIS:
                 return diagonalDNAAnalyzerObjectFactory.getObject();
         }
         return null;

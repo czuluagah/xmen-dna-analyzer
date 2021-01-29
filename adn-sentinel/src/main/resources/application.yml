@@ -1,7 +1,28 @@
 spring:
   application:
     name: xmen-dna-analyzer
+  data:
+    mongodb:
+      database: dna-analyzer
+      port: 27017
+      host: localhost
+
 logging:
   pattern:
     level: debug
 
+server:
+  servlet:
+    context-path: /dna.analyzer
+  compression:
+    enabled: true
+  tomcat:
+    threads:
+      max: 200
+
+management:
+  endpoints:
+    enabled-by-default: false
+  endpoint:
+    health:
+      enabled: true
