@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: xmen-dna-analyzer
+logging:
+  pattern:
+    level: debug
+
