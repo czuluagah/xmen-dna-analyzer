@@ -32,6 +32,12 @@ $ docker build -t mutant-analyser:v1 . && docker run -p 8080:8080 mutant-analyse
 
 # X-Men APi 
 
+HealthCheck Resource
+
+```
+curl --location --request GET 'http://localhost:8080/dna.analyzer/actuator/health'
+```
+
 Mutant Dna Analyzer
 
 ```
@@ -43,4 +49,7 @@ curl --location --request GET 'localhost:8080/dna.analyzer/mutant' \
 ```
 
 Mutant Dna Stats
+```
+curl --location --request GET 'http://localhost:8080/dna.analyzer/stats'
+```
 
