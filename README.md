@@ -3,12 +3,12 @@
 
 # Requirements:
 
-Java 11
-Docker
-Docker-comppose
-Maven 3.x
-Lombok library (www.projectlombok.org) (only if you want to import the maven project into your favorite IDE)
-MongoBD
+- Java 11
+- Docker
+- Docker-comppose
+- Maven 3.x
+- Lombok library (www.projectlombok.org) (only if you want to import the maven project into your favorite IDE)
+- Mongo
 
 # Installation:
 
@@ -18,15 +18,18 @@ Goto to ../xmen-dna-analyzer/adn-sentinel directory
 ```
 mvn clean verify 
 ```
-2. Run Mongo
+2. Create Docket Network
 ```
-$ docker run -p 27017:27017 mongo
+$ docker network create --attachable -d bridge dna-analyzer
 ```
+3. Run Mongo
+```
+$ docker run --name mongo -p 27017:27017 --network=dna-analyzer mongo
+```
+4. Run docker build
 
-3. Run docker build
-
 ```
-$ docker build -t mutant-analyser:v1 . && docker run -p 8080:8080 mutant-analyser:v1 
+$ docker build -t mutant-analyser:v1 . && docker run -p 8080:8080 --network=dna-analyzer mutant-analyser:v1
 ```
 
 
