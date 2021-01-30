@@ -5,7 +5,7 @@ spring:
     mongodb:
       database: dna-analyzer
       port: 27017
-      host: localhost
+      host: mongo
 
 logging:
   pattern:
