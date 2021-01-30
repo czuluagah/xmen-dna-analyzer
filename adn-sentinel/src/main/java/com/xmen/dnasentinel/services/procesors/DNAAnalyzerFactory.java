@@ -3,7 +3,6 @@ package com.xmen.dnasentinel.services.procesors;
 import java.math.BigDecimal;
 
 import org.springframework.beans.factory.ObjectFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
@@ -14,17 +13,19 @@ import com.xmen.dnasentinel.services.types.DNAAnalysisType;
 @Component
 public class DNAAnalyzerFactory {
 
-    @Autowired
-    @Qualifier("horizontalDNAAnalyzer")
-    private ObjectFactory<DNAAnalizerCommand> horizontalDNAAnalyzerObjectFactory;
+    private final ObjectFactory<DNAAnalizerCommand> horizontalDNAAnalyzerObjectFactory;
 
-    @Autowired
-    @Qualifier("verticalDNAAnalyzer")
-    private ObjectFactory<DNAAnalizerCommand> verticalDNAAnalyzerObjectFactory;
+    private final ObjectFactory<DNAAnalizerCommand> verticalDNAAnalyzerObjectFactory;
 
-    @Autowired
-    @Qualifier("diagonalDNAAnalyzer")
-    private ObjectFactory<DNAAnalizerCommand> diagonalDNAAnalyzerObjectFactory;
+    private final ObjectFactory<DNAAnalizerCommand> diagonalDNAAnalyzerObjectFactory;
+
+    public DNAAnalyzerFactory(@Qualifier("horizontalDNAAnalyzer") ObjectFactory<DNAAnalizerCommand> horizontalDNAAnalyzerObjectFactory,
+                              @Qualifier("verticalDNAAnalyzer") ObjectFactory<DNAAnalizerCommand> verticalDNAAnalyzerObjectFactory,
+                              @Qualifier("diagonalDNAAnalyzer") ObjectFactory<DNAAnalizerCommand> diagonalDNAAnalyzerObjectFactory) {
+        this.horizontalDNAAnalyzerObjectFactory = horizontalDNAAnalyzerObjectFactory;
+        this.verticalDNAAnalyzerObjectFactory = verticalDNAAnalyzerObjectFactory;
+        this.diagonalDNAAnalyzerObjectFactory = diagonalDNAAnalyzerObjectFactory;
+    }
 
     public DNAAnalizerCommand<DNASequence, BigDecimal> getAnalizer(DNAAnalysisType dnaAnalysisType){
         switch (dnaAnalysisType){

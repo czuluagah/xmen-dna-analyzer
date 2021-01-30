@@ -11,6 +11,7 @@ import com.xmen.dnasentinel.command.DNAAnalizerCommand;
 import com.xmen.dnasentinel.model.DNASequence;
 import com.xmen.dnasentinel.services.types.DNAAnalysisType;
 import com.xmen.dnasentinel.utils.DNAAnalyzerValidator;
+
 import static java.lang.String.valueOf;
 
 @Component("diagonalDNAAnalyzer")

@@ -7,7 +7,6 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.xmen.dnasentinel.model.DNAAnalysisStats;
@@ -22,7 +21,11 @@ import static com.xmen.dnasentinel.utils.Constants.MUTANT;
 @Component
 public class DNAAnalysisStorageServiceImpl implements DNAAnalysisStorageService {
 
-    @Autowired private DNARespository repository;
+    private final DNARespository repository;
+
+    public DNAAnalysisStorageServiceImpl(DNARespository repository) {
+        this.repository = repository;
+    }
 
     @Override
     public void storageDNASequence(DNASequence dnaSequence, BigDecimal numberOfMatches, Boolean isMutant) {

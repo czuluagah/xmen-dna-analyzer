@@ -5,9 +5,10 @@ import java.util.Optional;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-import static com.xmen.dnasentinel.utils.Constants.DNA_SEQUENCE_PATTERN;
 
 import com.xmen.dnasentinel.model.DNASequence;
+
+import static com.xmen.dnasentinel.utils.Constants.DNA_SEQUENCE_PATTERN;
 
 public class DNASequenceValidator implements ConstraintValidator<DNASequenceValid, DNASequence> {
 

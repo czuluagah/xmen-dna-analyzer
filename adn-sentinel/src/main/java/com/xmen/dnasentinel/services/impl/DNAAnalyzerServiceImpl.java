@@ -21,6 +21,7 @@ import static com.xmen.dnasentinel.utils.DNAAnalyzerValidator.IS_MUTANT_DNA;
 
 @Component
 @Slf4j
+
 public class DNAAnalyzerServiceImpl implements DNAAnalyzerService {
 
     private final DNASequenceAnalyzer dnaSequenceAnalyzer;

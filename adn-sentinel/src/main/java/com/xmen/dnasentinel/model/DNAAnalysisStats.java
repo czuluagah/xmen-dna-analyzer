@@ -3,8 +3,6 @@ package com.xmen.dnasentinel.model;
 import lombok.Builder;
 import lombok.Data;
 
-import java.math.BigDecimal;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Data
