@@ -56,6 +56,3 @@ Mutant Dna Stats
 curl --location --request GET 'http://localhost:8080/dna.analyzer/stats'
 ```
 
-#Jacoco Summary
-
-
