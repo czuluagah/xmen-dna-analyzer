@@ -32,7 +32,7 @@ $ docker run --name mongo -p 27017:27017 --network=dna-analyzer mongo
 4. Run docker build
 
 ```
-$ docker build -t mutant-analyser:v1 . && docker run -p 8080:8080 --network=dna-analyzer mutant-analyser:v1
+$ docker build -t mutant-analyser:v1 . && docker run -p 8080:8080 --network=dna-analyzer -e SPRING_PROFILES_ACTIVE=docker mutant-analyser:v1
 ```
 
 
