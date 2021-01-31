@@ -9,6 +9,11 @@
 - Maven 3.x
 - Lombok library (www.projectlombok.org) (only if you want to import the maven project into your favorite IDE)
 - Mongo
+# Documentation
+  Swagger Endpoint : http://localhost:8080/dna.analyzer/v2/api-docs
+# Coverage Information
+  To manage coverage was through Jacoco, the final coverage it over 90%
+  
 # Spring Profiles
 - Local: To execute running locally.
 - Docker: To execute as docker containers.
