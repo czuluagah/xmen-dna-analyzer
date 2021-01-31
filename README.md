@@ -14,6 +14,9 @@
 # Coverage Information
   To manage coverage was through Jacoco, the final coverage it over 90%
   
+# Jmeter Script
+  Go to \adn-sentinel\Jmeter-XmenDNAAnalyzer.jmx
+  
 # Spring Profiles
 - Local: To execute running locally.
 - Docker: To execute as docker containers.
