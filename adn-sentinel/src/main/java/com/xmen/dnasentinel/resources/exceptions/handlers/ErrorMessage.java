@@ -1,9 +1,10 @@
 package com.xmen.dnasentinel.resources.exceptions.handlers;
 
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 
 @Builder
+@Getter
 public class ErrorMessage {
-    private String errorMessage;
+    private String message;
 }

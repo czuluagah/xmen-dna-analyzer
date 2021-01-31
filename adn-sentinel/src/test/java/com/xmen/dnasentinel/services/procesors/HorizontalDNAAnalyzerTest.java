@@ -2,6 +2,7 @@ package com.xmen.dnasentinel.services.procesors;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -10,21 +11,25 @@ import com.xmen.dnasentinel.services.procesors.impl.HorizontalDNAAnalyzer;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class HorizontalDNAAnalyzerTest {
+class HorizontalDNAAnalyzerTest {
+
+    private static final List<String> SEQUENCE_WITH_MUTANT_DNA = Arrays.asList("ATGCGA","CAGTGC","TTATGT","AGAAGG","CCCCTA","TCACTG");
+    private static final List<String> SEQUENCE_WITHOUT_MUTANT_DNA = Arrays.asList("GTGCAA","CAGTGC","TTATGT","AGAAGG","CACCTA","TCACTG");
+
     HorizontalDNAAnalyzer dnaAnalyzer = new HorizontalDNAAnalyzer();
 
     @Test
-    public void whenIsHorizontalAnalysisAndFountMutantDNA(){
+    void whenIsHorizontalAnalysisAndFountMutantDNA(){
         DNASequence dnaSequence = new DNASequence();
-        dnaSequence.setSequences(Arrays.asList("ATGCGA","CAGTGC","TTATGT","AGAAGG","CCCCTA","TCACTG"));
+        dnaSequence.setSequences(SEQUENCE_WITH_MUTANT_DNA);
         BigDecimal actual = dnaAnalyzer.analyze(dnaSequence);
         assertEquals(BigDecimal.valueOf(1),actual);
     }
 
     @Test
-    public void whenIsHorizontalAnalysisAndNotFoundMutantDNA(){
+    void whenIsHorizontalAnalysisAndNotFoundMutantDNA(){
         DNASequence dnaSequence = new DNASequence();
-        dnaSequence.setSequences(Arrays.asList("GTGCGA","CAGTGC","TTATGT","AGAAGG","CACCTA","TCACTG"));
+        dnaSequence.setSequences(SEQUENCE_WITHOUT_MUTANT_DNA);
         BigDecimal actual = dnaAnalyzer.analyze(dnaSequence);
         assertEquals(BigDecimal.ZERO,actual);
     }

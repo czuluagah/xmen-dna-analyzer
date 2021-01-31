@@ -7,7 +7,7 @@ import com.xmen.dnasentinel.model.DNASequence;
 
 public interface DNAAnalysisStorageService {
 
-    void storageDNASequence(DNASequence dnaSequence, BigDecimal numberOfMatches, Boolean isMutant);
+    void storageDNASequence(DNASequence dnaSequence, BigDecimal numberOfMatches, boolean isMutant);
 
     DNAAnalysisStats getStats();
 

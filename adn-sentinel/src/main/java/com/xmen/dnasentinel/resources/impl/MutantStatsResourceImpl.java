@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.xmen.dnasentinel.model.DNAAnalysisStats;
 import com.xmen.dnasentinel.resources.MutantStatsResource;
 import com.xmen.dnasentinel.services.DNASentinelService;
+
 import static com.xmen.dnasentinel.utils.Constants.STATS_RESOURCE;
 
 @Api(
-        value = "DNA Mutant Stats",
+        value = "DNA Mutant Stats - Resource to visualize the stats from the dna analysis",
         tags = "controller",
-        description = "Mutant controller",
         produces = MediaType.APPLICATION_JSON_VALUE,
         consumes = MediaType.APPLICATION_JSON_VALUE
 )
@@ -34,12 +34,13 @@ public class MutantStatsResourceImpl implements MutantStatsResource {
 
     @ApiOperation(
             value = "Resource to get stats from dna analysis",
-            notes = ""
+            produces = MediaType.APPLICATION_JSON_VALUE,
+            httpMethod = "GET"
     )
 
     @ApiResponses({
-            @ApiResponse(code = 200, message = "Successful Stats Online",
-                    response = ResponseEntity.class)
+            @ApiResponse(code = 200, message = "Successful Stats Online"),
+            @ApiResponse(code = 500, message = "Please contact Charles Francis Xavier - Professor X")
     })
 
     @Override

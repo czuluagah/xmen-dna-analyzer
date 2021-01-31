@@ -7,10 +7,10 @@ import org.junit.jupiter.api.Test;
 import com.xmen.dnasentinel.model.DNASequence;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class DNASequenceValidatorTest {
+class DNASequenceValidatorTest {
 
     @Test
-    public void whenDNASequenceIsInvalid(){
+    void whenDNASequenceIsInvalid(){
         DNASequence dnaSequence = new DNASequence();
         dnaSequence.setSequences(Arrays.asList("ATGCGA","CAGTGC","TTATGT","AGAAGG","CCCCTA","TCACTX"));
         DNASequenceValidator validator = new DNASequenceValidator();
@@ -19,7 +19,7 @@ public class DNASequenceValidatorTest {
     }
 
     @Test
-    public void whenDNASequenceIsValid(){
+    void whenDNASequenceIsValid(){
         DNASequence dnaSequence = new DNASequence();
         dnaSequence.setSequences(Arrays.asList("ATGCGA","CAGTGC","TTATGT","AGAAGG","CCCCTA","TCACTG"));
         DNASequenceValidator validator = new DNASequenceValidator();
@@ -28,7 +28,7 @@ public class DNASequenceValidatorTest {
     }
 
     @Test
-    public void whenDNASequenceIsNull(){
+    void whenDNASequenceIsNull(){
         DNASequence dnaSequence = new DNASequence();
         dnaSequence.setSequences(null);
         DNASequenceValidator validator = new DNASequenceValidator();

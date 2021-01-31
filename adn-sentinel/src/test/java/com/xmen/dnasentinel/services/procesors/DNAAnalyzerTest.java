@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
-public class DNAAnalyzerTest {
+class DNAAnalyzerTest {
 
     @Mock
     private DNAAnalyzerFactory factory;
@@ -31,7 +31,7 @@ public class DNAAnalyzerTest {
     }
 
     @Test
-    public void getHorizontalTest(){
+    void getHorizontalTest(){
         DNASequence dnaSequence = new DNASequence();
         DNAAnalysisType type = DNAAnalysisType.VERTICAL_ANALYSIS;
         when(factory.getAnalizer(type)).thenReturn(command);

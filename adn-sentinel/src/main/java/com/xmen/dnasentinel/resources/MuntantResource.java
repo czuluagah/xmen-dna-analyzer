@@ -6,6 +6,6 @@ import com.xmen.dnasentinel.model.DNASequence;
 
 public interface MuntantResource {
 
-    public ResponseEntity isMutant(DNASequence dnaSequence);
+    ResponseEntity<Object> isMutant(DNASequence dnaSequence);
 
 }

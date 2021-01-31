@@ -17,18 +17,18 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
-public class DNAAnalyzerFactoryTest {
+class DNAAnalyzerFactoryTest {
 
     private DNAAnalyzerFactory factory = null;
 
     @Mock
-    private ObjectFactory<DNAAnalizerCommand> horizontalDNAAnalyzerObjectFactory;
+    private ObjectFactory horizontalDNAAnalyzerObjectFactory;
 
     @Mock
-    private ObjectFactory<DNAAnalizerCommand> verticalDNAAnalyzerObjectFactory;
+    private ObjectFactory verticalDNAAnalyzerObjectFactory;
 
     @Mock
-    private ObjectFactory<DNAAnalizerCommand> diagonalDNAAnalyzerObjectFactory;
+    private ObjectFactory diagonalDNAAnalyzerObjectFactory;
 
     public DNAAnalyzerFactoryTest() {
         MockitoAnnotations.initMocks(this);
@@ -38,21 +38,21 @@ public class DNAAnalyzerFactoryTest {
     }
 
     @Test
-    public void getHorizontalTest(){
+    void getHorizontalTest(){
         when(horizontalDNAAnalyzerObjectFactory.getObject()).thenReturn(new HorizontalDNAAnalyzer());
         DNAAnalizerCommand comand = factory.getAnalizer(DNAAnalysisType.HORIZONTAL_ANALYSIS);
         assertNotNull(comand);
     }
 
     @Test
-    public void getveticalTest(){
+    void getVeticalTest(){
         when(verticalDNAAnalyzerObjectFactory.getObject()).thenReturn(new VerticalDNAAnalyzer());
         DNAAnalizerCommand comand = factory.getAnalizer(DNAAnalysisType.VERTICAL_ANALYSIS);
         assertNotNull(comand);
     }
 
     @Test
-    public void getDiagonalTest(){
+    void getDiagonalTest(){
         when(diagonalDNAAnalyzerObjectFactory.getObject()).thenReturn(new DiagonalDNAAnalyzer());
         DNAAnalizerCommand comand = factory.getAnalizer(DNAAnalysisType.DIAGONAL_ANALYSIS);
         assertNotNull(comand);

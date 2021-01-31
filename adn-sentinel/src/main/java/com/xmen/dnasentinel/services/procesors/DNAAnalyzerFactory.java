@@ -13,15 +13,13 @@ import com.xmen.dnasentinel.services.types.DNAAnalysisType;
 @Component
 public class DNAAnalyzerFactory {
 
-    private final ObjectFactory<DNAAnalizerCommand> horizontalDNAAnalyzerObjectFactory;
+    private final ObjectFactory<DNAAnalizerCommand<DNASequence, BigDecimal>> horizontalDNAAnalyzerObjectFactory;
 
-    private final ObjectFactory<DNAAnalizerCommand> verticalDNAAnalyzerObjectFactory;
+    private final ObjectFactory<DNAAnalizerCommand<DNASequence, BigDecimal>> verticalDNAAnalyzerObjectFactory;
 
-    private final ObjectFactory<DNAAnalizerCommand> diagonalDNAAnalyzerObjectFactory;
+    private final ObjectFactory<DNAAnalizerCommand<DNASequence, BigDecimal>> diagonalDNAAnalyzerObjectFactory;
 
-    public DNAAnalyzerFactory(@Qualifier("horizontalDNAAnalyzer") ObjectFactory<DNAAnalizerCommand> horizontalDNAAnalyzerObjectFactory,
-                              @Qualifier("verticalDNAAnalyzer") ObjectFactory<DNAAnalizerCommand> verticalDNAAnalyzerObjectFactory,
-                              @Qualifier("diagonalDNAAnalyzer") ObjectFactory<DNAAnalizerCommand> diagonalDNAAnalyzerObjectFactory) {
+    public DNAAnalyzerFactory(@Qualifier("horizontalDNAAnalyzer") ObjectFactory<DNAAnalizerCommand<DNASequence, BigDecimal>> horizontalDNAAnalyzerObjectFactory, @Qualifier("verticalDNAAnalyzer") ObjectFactory<DNAAnalizerCommand<DNASequence, BigDecimal>> verticalDNAAnalyzerObjectFactory, @Qualifier("diagonalDNAAnalyzer") ObjectFactory<DNAAnalizerCommand<DNASequence, BigDecimal>> diagonalDNAAnalyzerObjectFactory) {
         this.horizontalDNAAnalyzerObjectFactory = horizontalDNAAnalyzerObjectFactory;
         this.verticalDNAAnalyzerObjectFactory = verticalDNAAnalyzerObjectFactory;
         this.diagonalDNAAnalyzerObjectFactory = diagonalDNAAnalyzerObjectFactory;
@@ -35,7 +33,8 @@ public class DNAAnalyzerFactory {
                 return horizontalDNAAnalyzerObjectFactory.getObject();
             case DIAGONAL_ANALYSIS:
                 return diagonalDNAAnalyzerObjectFactory.getObject();
+            default: return null;
         }
-        return null;
+
     }
 }

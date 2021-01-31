@@ -1,6 +1,6 @@
 package com.xmen.dnasentinel.command;
 
-public interface DNAAnalizerCommand<REQUEST,RESPONSE> {
+public interface DNAAnalizerCommand<R,T> {
 
-    public RESPONSE analyze(REQUEST request);
+    T analyze(R request);
 }

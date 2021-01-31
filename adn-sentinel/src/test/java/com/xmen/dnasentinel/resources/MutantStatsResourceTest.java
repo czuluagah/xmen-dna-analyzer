@@ -1,6 +1,5 @@
 package com.xmen.dnasentinel.resources;
 
-
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -14,8 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.when;
 
-
-public class MutantStatsResourceTest {
+class MutantStatsResourceTest {
 
     private MutantStatsResourceImpl rest;
 
@@ -28,7 +26,7 @@ public class MutantStatsResourceTest {
     }
 
     @Test
-    public void testAnalysisStats(){
+    void testAnalysisStats(){
         DNAAnalysisStats expected = DNAAnalysisStats.builder()
                 .humans(0)
                 .mutants(10)

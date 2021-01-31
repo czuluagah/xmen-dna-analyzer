@@ -18,7 +18,7 @@ import static org.mockito.Mockito.when;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @RunWith(MockitoJUnitRunner.class)
-public class DNASentinelServiceImplTest {
+class DNASentinelServiceImplTest {
 
     @Mock
     private final DNAAnalyzerService dnaAnalyzerService = null;
@@ -37,7 +37,7 @@ public class DNASentinelServiceImplTest {
     }
 
     @Test
-    public void testAnalysis(){
+    void testAnalysis(){
         AnalysisResult result = AnalysisResult.builder()
                 .isMutant(true)
                 .numberOfMatches(BigDecimal.valueOf(3)).build();
@@ -47,7 +47,7 @@ public class DNASentinelServiceImplTest {
     }
 
     @Test
-    public void testStats(){
+    void testStats(){
         DNAAnalysisStats stats = DNAAnalysisStats.builder().mutants(10)
                 .humans(5)
                 .ratio(0.5)

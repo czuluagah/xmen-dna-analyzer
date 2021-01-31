@@ -12,13 +12,21 @@
 
     <groupId>com.xmen</groupId>
     <artifactId>adn-sentinel</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <name>AdnSentinel</name>
 
     <properties>
         <java.version>11</java.version>
         <swagger.version>2.9.2</swagger.version>
         <jacoco.version>0.8.5</jacoco.version>
+        <sonar.coverage.exclusions> <!-- this classes should be excluded from Sonar analysis -->
+            **/config/*.*,
+            **/model/*.*,
+            **/repositories/**/*.*,
+            **/command/*.*,
+            **/exceptions/**/*.*
+        </sonar.coverage.exclusions>
+
     </properties>
 
     <dependencies>

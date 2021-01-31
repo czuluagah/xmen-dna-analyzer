@@ -18,24 +18,20 @@ import com.xmen.dnasentinel.exceptions.ContaminatedDnaSampleException;
 public class ApiExceptionHandler {
 
     @ExceptionHandler({MethodArgumentNotValidException.class})
-    public ResponseEntity handler(MethodArgumentNotValidException e){
-        log.error("ApiExceptionHandler", e);
-
+    public ResponseEntity<ErrorMessage> handler(MethodArgumentNotValidException e){
         return ResponseEntity.status(HttpStatus.FORBIDDEN)
-                .body(ErrorMessage.builder().errorMessage("Not Human or Mutant DNA Sequence maybe Alien").build());
+                .body(ErrorMessage.builder().message("Not Human or Mutant DNA Sequence maybe Alien").build());
     }
 
     @ExceptionHandler({Exception.class})
-    public ResponseEntity handler(Exception e){
-        log.error("ApiExceptionHandler", e);
+    public ResponseEntity<ErrorMessage> handler(Exception e){
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(ErrorMessage.builder().errorMessage("Please contact Charles Francis Xavier - Professor X").build());
+                .body(ErrorMessage.builder().message("Please contact Charles Francis Xavier - Professor X").build());
     }
 
     @ExceptionHandler({ContaminatedDnaSampleException.class})
-    public ResponseEntity handler(ContaminatedDnaSampleException e){
-        log.error("ApiExceptionHandler", e);
+    public ResponseEntity<ErrorMessage> handler(ContaminatedDnaSampleException e){
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                .body(ErrorMessage.builder().errorMessage("DNA Sample Contamined please contact Charles Francis Xavier - Professor X").build());
+                .body(ErrorMessage.builder().message("DNA Sample Contamined please contact Charles Francis Xavier - Professor X").build());
     }
 }

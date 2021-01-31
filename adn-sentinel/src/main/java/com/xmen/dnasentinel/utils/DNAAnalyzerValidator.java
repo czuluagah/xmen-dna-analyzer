@@ -3,9 +3,8 @@ package com.xmen.dnasentinel.utils;
 import lombok.experimental.UtilityClass;
 
 import java.math.BigDecimal;
+import java.util.function.Predicate;
 
-import com.google.common.base.Predicate;
-import com.google.common.base.Predicates;
 
 import static com.xmen.dnasentinel.services.types.DNASequenceType.A_SEQUENCE;
 import static com.xmen.dnasentinel.services.types.DNASequenceType.C_SEQUENCE;
@@ -29,14 +28,13 @@ public class DNAAnalyzerValidator {
 
 
     public static final Predicate<BigDecimal> IS_MUTANT_DNA = numberOfSequencesFound ->
-            BigDecimal.ONE.compareTo(numberOfSequencesFound) == -1;
+            BigDecimal.ONE.compareTo(numberOfSequencesFound) < 0;
 
 
     public static boolean isMutantDNA(final String sequence) {
-        return Predicates.or(Predicates.or(IS_MUTANT_A_SEQUENCE),
-                Predicates.or(IS_MUTANT_C_SEQUENCE),
-                Predicates.or(IS_MUTANT_G_SEQUENCE),
-                Predicates.or(IS_MUTANT_T_SEQUENCE))
-                .apply(sequence);
+        return IS_MUTANT_A_SEQUENCE.or(IS_MUTANT_C_SEQUENCE)
+                .or(IS_MUTANT_G_SEQUENCE)
+                .or(IS_MUTANT_T_SEQUENCE)
+                .test(sequence);
     }
 }

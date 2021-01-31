@@ -24,7 +24,7 @@ import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 
-public class DNAAnalysisStorageServiceTest {
+class DNAAnalysisStorageServiceTest {
     @Mock
     private final DNARespository respository = null;
 
@@ -40,17 +40,7 @@ public class DNAAnalysisStorageServiceTest {
     }
 
     @Test
-    public void saveMutantDNA(){
-        storageService.storageDNASequence(dnaSequence, BigDecimal.valueOf(3), Boolean.TRUE);
-    }
-
-    @Test
-    public void saveHumanDNA(){
-        storageService.storageDNASequence(dnaSequence, BigDecimal.valueOf(1), Boolean.FALSE);
-    }
-
-    @Test
-    public void testGetStats(){
+    void testGetStats(){
         List<DnaDcoument> documents = Arrays.asList(
                 DnaDcoument.builder()
                         .id(UUID.randomUUID().toString())
@@ -75,7 +65,7 @@ public class DNAAnalysisStorageServiceTest {
     }
 
     @Test
-    public void testGetStatsWhenNotAnalysisExecuted(){
+    void testGetStatsWhenNotAnalysisExecuted(){
         List<DnaDcoument> documents = Collections.emptyList();
         when(respository.findAll()).thenReturn(documents);
         DNAAnalysisStats expected = DNAAnalysisStats.builder()

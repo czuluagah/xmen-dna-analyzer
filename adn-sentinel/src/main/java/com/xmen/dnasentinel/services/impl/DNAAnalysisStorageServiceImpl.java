@@ -28,7 +28,7 @@ public class DNAAnalysisStorageServiceImpl implements DNAAnalysisStorageService 
     }
 
     @Override
-    public void storageDNASequence(DNASequence dnaSequence, BigDecimal numberOfMatches, Boolean isMutant) {
+    public void storageDNASequence(DNASequence dnaSequence, BigDecimal numberOfMatches, boolean isMutant) {
         repository.save(DnaDcoument.builder().dnaSecuence(dnaSequence.getSequences())
                 .id(UUID.randomUUID().toString())
                 .type(isMutant ? MUTANT: HUMAN)
@@ -43,7 +43,7 @@ public class DNAAnalysisStorageServiceImpl implements DNAAnalysisStorageService 
             Map<String, List<DnaDcoument>> analysisGrouping = dnaAnalysis.stream().collect(Collectors.groupingBy(DnaDcoument::getType));
             Integer mutants = analysisGrouping.getOrDefault(MUTANT, Collections.emptyList()).size();
             Integer numberOfAnalysis = dnaAnalysis.size();
-            double ratio = (mutants * 100) / numberOfAnalysis;
+            double ratio = (mutants.doubleValue() * 100) / numberOfAnalysis.doubleValue();
             return DNAAnalysisStats.builder()
                     .humans(analysisGrouping.getOrDefault(HUMAN, Collections.emptyList()).size())
                     .mutants(mutants)

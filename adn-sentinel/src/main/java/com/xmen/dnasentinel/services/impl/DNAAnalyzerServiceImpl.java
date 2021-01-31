@@ -46,7 +46,7 @@ public class DNAAnalyzerServiceImpl implements DNAAnalyzerService {
                     .orElseGet(()->BigDecimal.ZERO);
 
             return AnalysisResult.builder()
-                    .isMutant(IS_MUTANT_DNA.apply(numberOfDNAMutantFound))
+                    .isMutant(IS_MUTANT_DNA.test(numberOfDNAMutantFound))
                     .numberOfMatches(numberOfDNAMutantFound)
                     .build();
 

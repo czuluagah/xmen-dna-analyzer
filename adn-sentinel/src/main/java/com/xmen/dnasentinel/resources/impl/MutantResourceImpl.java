@@ -23,7 +23,6 @@ import static com.xmen.dnasentinel.utils.Constants.MUTANT_RESOURCE;
 @Api(
         value = "DNA Mutant Analyzer",
         tags = "controller",
-        description = "Mutant controller",
         produces = MediaType.APPLICATION_JSON_VALUE,
         consumes = MediaType.APPLICATION_JSON_VALUE
 )
@@ -39,19 +38,20 @@ public class MutantResourceImpl implements MuntantResource {
 
     @ApiOperation(
             value = "Resource to analyze an DNA sequence",
-            notes = ""
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            httpMethod = "POST"
     )
 
     @ApiResponses({
-            @ApiResponse(code = 200, message = "Successful Mutant DNA Found",
-                    response = ResponseEntity.class),
-            @ApiResponse(code = 403, message = "Forbidden Mutant DNA Not Found",
-                    response = ResponseEntity.class)
+            @ApiResponse(code = 200, message = "Successful - Mutant DNA Found"),
+            @ApiResponse(code = 403, message = "Forbidden - Not Human or Mutant DNA Sequence maybe Alien"),
+            @ApiResponse(code = 400, message = "Bad Request - DNA Sample Contamined please contact Charles Francis Xavier - Professor X"),
+            @ApiResponse(code = 500, message = "Please contact Charles Francis Xavier - Professor X")
     })
 
     @Override
     @PostMapping(MUTANT_RESOURCE)
-    public ResponseEntity isMutant(@RequestBody @Valid DNASequence dnaSequence) {
+    public ResponseEntity<Object> isMutant(@RequestBody @Valid DNASequence dnaSequence) {
         boolean isMutant = sentinelService.isMutant(dnaSequence);
         return isMutant ? ResponseEntity.ok().build() :
                 ResponseEntity.status(HttpStatus.FORBIDDEN).build();

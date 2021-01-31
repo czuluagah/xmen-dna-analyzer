@@ -12,33 +12,33 @@ import com.xmen.dnasentinel.resources.exceptions.handlers.ErrorMessage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ApiExceptionHandlerTest {
+class ApiExceptionHandlerTest {
 
     private ApiExceptionHandler handler = new ApiExceptionHandler();
 
     @Test
-    public void handlerException(){
+    void handlerException(){
         ResponseEntity actual = handler.handler(new Exception());
         ResponseEntity expected = ResponseEntity
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(ErrorMessage.builder().errorMessage("Please contact Charles Francis Xavier - Professor X").build());
+                .body(ErrorMessage.builder().message("Please contact Charles Francis Xavier - Professor X").build());
         assertEquals(expected.getStatusCode(),actual.getStatusCode());
     }
 
     @Test
-    public void handlerContaminatedDnaSampleException(){
+    void handlerContaminatedDnaSampleException(){
         ResponseEntity actual = handler.handler(new ContaminatedDnaSampleException("DNA Sample Contaminated"));
         ResponseEntity expected = ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
-                .body(ErrorMessage.builder().errorMessage("DNA Sample Contamined please contact Charles Francis Xavier - Professor X").build());
+                .body(ErrorMessage.builder().message("DNA Sample Contamined please contact Charles Francis Xavier - Professor X").build());
         assertEquals(expected.getStatusCode(),actual.getStatusCode());
     }
 
     @Test
-    public void handlerContaminatedDnaSampleMethodArgumentNotValidException(){
+    void handlerContaminatedDnaSampleMethodArgumentNotValidException(){
         ResponseEntity actual = handler.handler(Mockito.mock(MethodArgumentNotValidException.class));
         ResponseEntity expected = ResponseEntity.status(HttpStatus.FORBIDDEN)
-                .body(ErrorMessage.builder().errorMessage("Not Human or Mutant DNA Sequence maybe Alien").build());
+                .body(ErrorMessage.builder().message("Not Human or Mutant DNA Sequence maybe Alien").build());
         assertEquals(expected.getStatusCode(),actual.getStatusCode());
     }
 }
