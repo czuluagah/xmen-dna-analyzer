@@ -20,7 +20,7 @@ public class DiagonalDNAAnalyzer implements DNAAnalizerCommand<DNASequence, BigD
 
     @Override
     public BigDecimal analyze(DNASequence dnaSequence) {
-        log.info("=============== Running DiagonalDNAAnalyzer ================");
+        log.info("DiagonalDNAAnalyzer");
         BigDecimal numberOfMatches = BigDecimal.ZERO;
         for(DNAAnalysisType dnaAnalysisType : DNAAnalysisType.getDiagonalMethod()) {
             numberOfMatches = numberOfMatches.add(this.processDiagonalAnalysis(dnaSequence, dnaAnalysisType));

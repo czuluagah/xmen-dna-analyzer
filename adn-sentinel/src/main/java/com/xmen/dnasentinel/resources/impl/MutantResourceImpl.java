@@ -38,8 +38,8 @@ public class MutantResourceImpl implements MuntantResource {
     }
 
     @ApiOperation(
-            value = "Get the Confirm Page information",
-            notes = "Get the necessary information for the Confirm Page"
+            value = "Resource to analyze an DNA sequence",
+            notes = ""
     )
 
     @ApiResponses({

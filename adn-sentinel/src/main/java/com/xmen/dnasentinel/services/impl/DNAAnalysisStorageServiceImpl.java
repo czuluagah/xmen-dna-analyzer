@@ -43,11 +43,11 @@ public class DNAAnalysisStorageServiceImpl implements DNAAnalysisStorageService 
             Map<String, List<DnaDcoument>> analysisGrouping = dnaAnalysis.stream().collect(Collectors.groupingBy(DnaDcoument::getType));
             Integer mutants = analysisGrouping.getOrDefault(MUTANT, Collections.emptyList()).size();
             Integer numberOfAnalysis = dnaAnalysis.size();
-            double ration = (mutants * 100) / numberOfAnalysis;
+            double ratio = (mutants * 100) / numberOfAnalysis;
             return DNAAnalysisStats.builder()
                     .humans(analysisGrouping.getOrDefault(HUMAN, Collections.emptyList()).size())
                     .mutants(mutants)
-                    .ratio(ration / 100)
+                    .ratio(ratio / 100)
                     .numberOfAnalusis(dnaAnalysis.size()).build();
         }
 

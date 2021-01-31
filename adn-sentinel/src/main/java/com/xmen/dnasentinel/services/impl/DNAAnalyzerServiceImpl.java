@@ -52,6 +52,10 @@ public class DNAAnalyzerServiceImpl implements DNAAnalyzerService {
 
         }catch(Exception e){
             throw new ContaminatedDnaSampleException("DNA Sample Contaminated");
+        }finally {
+            if(forkJoinPool.isTerminated() && !forkJoinPool.isShutdown()){
+                forkJoinPool.shutdown();
+            }
         }
     }
 }

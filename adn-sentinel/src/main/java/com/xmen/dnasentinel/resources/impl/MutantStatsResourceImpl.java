@@ -16,7 +16,7 @@ import com.xmen.dnasentinel.services.DNASentinelService;
 import static com.xmen.dnasentinel.utils.Constants.STATS_RESOURCE;
 
 @Api(
-        value = "DNA Mutant Analyzer",
+        value = "DNA Mutant Stats",
         tags = "controller",
         description = "Mutant controller",
         produces = MediaType.APPLICATION_JSON_VALUE,
@@ -33,14 +33,12 @@ public class MutantStatsResourceImpl implements MutantStatsResource {
     }
 
     @ApiOperation(
-            value = "Get the Confirm Page information",
-            notes = "Get the necessary information for the Confirm Page"
+            value = "Resource to get stats from dna analysis",
+            notes = ""
     )
 
     @ApiResponses({
-            @ApiResponse(code = 200, message = "Successful Mutant DNA Found",
-                    response = ResponseEntity.class),
-            @ApiResponse(code = 403, message = "Forbidden Mutant DNA Not Found",
+            @ApiResponse(code = 200, message = "Successful Stats Online",
                     response = ResponseEntity.class)
     })
 
