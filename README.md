@@ -49,13 +49,13 @@ $ docker build -t mutant-analyser:v1 . && docker run -p 8080:8080 --network=dna-
 HealthCheck Resource
 
 ```
-curl --location --request GET 'http://localhost:8080/dna.analyzer/actuator/health'
+curl --location --request GET 'ec2-18-221-36-90.us-east-2.compute.amazonaws.com:8080/dna.analyzer/actuator/health'
 ```
 
 Mutant Dna Analyzer
 
 ```
-curl --location --request GET 'localhost:8080/dna.analyzer/mutant' \
+curl --location --request GET 'ec2-18-221-36-90.us-east-2.compute.amazonaws.com:8080/dna.analyzer/mutant' \
 --header 'Content-Type: application/json' \
 --data-raw '{
 "dna":["ATGCGA","CAGTGC","TTATGT","AGAAGG","CCCCTA","TCACTG"]
@@ -64,6 +64,6 @@ curl --location --request GET 'localhost:8080/dna.analyzer/mutant' \
 
 Mutant Dna Stats
 ```
-curl --location --request GET 'http://localhost:8080/dna.analyzer/stats'
+curl --location --request GET 'ec2-18-221-36-90.us-east-2.compute.amazonaws.com:8080/dna.analyzer/stats'
 ```
 
