@@ -44,7 +44,7 @@ $ docker build -t mutant-analyser:v1 . && docker run -p 8080:8080 --network=dna-
 ```
 
 
-# X-Men APi 
+# HOW TO TEST - X-Men APi 
 
 HealthCheck Resource
 
